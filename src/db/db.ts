@@ -23,7 +23,9 @@ const migrationsFolder = path.join(process.cwd(), "src", "db", "migrations");
 //     console.log("🟢 Successfully Migrated");
 //   } catch (error) {
 //     console.log("🔴 Error Migrating client", error);
-//   }
+//   } finally {
+//     await client.end();
+// }
 // };
 // migrateDb();
 
