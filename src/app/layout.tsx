@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localfont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import db from "@/db/db";
+import { DM_Sans } from "next/font/google";
+import { cn } from "../lib/utils";
 
-const inter = Inter({ subsets: ["latin"] });
+const dm_sans = DM_Sans({ subsets: ["latin"] });
+const international = localfont({
+  src: [
+    {
+      path: "../../public/fonts/nb_international_pro_light-webfont.woff2",
+    },
+  ],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +28,12 @@ export default function RootLayout({
   console.log("DB in layout:", db);
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={cn(
+          "bg-background antialiased h-screen",
+          international.className
+        )}
+      >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           {children}
         </ThemeProvider>
