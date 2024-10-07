@@ -15,7 +15,10 @@ type SidebarProps = React.ComponentPropsWithoutRef<"aside">;
 
 const Sidebar = ({ className, ...props }: SidebarProps) => {
   return (
-    <aside className={cn(" w-80 bg-slate-900 p-6", className)} {...props}>
+    <aside
+      className={cn(" w-80 h-full bg-slate-900 p-6", className)}
+      {...props}
+    >
       <nav className="space-y-4 flex flex-col justify-between h-full">
         <div className="flex flex-col">
           <DropdownMenu>
