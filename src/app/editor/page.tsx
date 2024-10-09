@@ -4,6 +4,7 @@ import Layout2 from "@/components/ui/layout2";
 import Layout1 from "@/components/ui/layout1";
 import Conditional from "@/components/ui/conditional";
 import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 
 export const Main = () => {
   return <div className="w-full h-full">Main</div>;

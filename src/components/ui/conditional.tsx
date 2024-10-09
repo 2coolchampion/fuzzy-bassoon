@@ -13,9 +13,9 @@ const Conditional: React.FC<ConditionalProps> = ({
   setAction,
 }: ConditionalProps) => {
   if (when === "layout1") {
-    return <Layout1 setLayout={setAction} />;
+    return <Layout1 key="layout1" setLayout={setAction} />;
   } else if (when === "layout2") {
-    return <Layout2 setLayout={setAction} />;
+    return <Layout2 key="layout2" setLayout={setAction} />;
   }
   return null;
 };

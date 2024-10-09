@@ -10,12 +10,18 @@ import { Button } from "./button";
 import RecentFilesSection from "./RecentFilesSection";
 import FolderTree from "./FolderTree";
 import { Input } from "./input";
+import { motion as m, HTMLMotionProps } from "framer-motion";
 
-type SidebarProps = React.ComponentPropsWithoutRef<"aside">;
+interface SidebarProps extends HTMLMotionProps<"aside"> {
+  className?: string;
+}
 
-const Sidebar = ({ className, ...props }: SidebarProps) => {
+const Sidebar: React.FC<SidebarProps> = ({ className, ...props }) => {
   return (
-    <aside
+    <m.aside
+      layout
+      layoutId="sidebar"
+      transition={{ duration: 0.15 }}
       className={cn(" w-80 h-full bg-slate-900 p-6", className)}
       {...props}
     >
@@ -52,7 +58,7 @@ const Sidebar = ({ className, ...props }: SidebarProps) => {
           <Button variant="outline">Feedback</Button>
         </div>
       </nav>
-    </aside>
+    </m.aside>
   );
 };
 export default Sidebar;

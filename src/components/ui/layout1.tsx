@@ -1,7 +1,9 @@
 import Topbar from "./topbar";
 import Sidebar from "./sidebar";
-import { Button } from "./button";
+import { Button, MButton } from "./button";
 import { Layout } from "@/lib/types";
+import { motion as m } from "framer-motion";
+import Editor from "./Editor";
 
 interface Layout1Props {
   setLayout: React.Dispatch<React.SetStateAction<Layout>>;
@@ -19,13 +21,18 @@ const layout1: React.FC<Layout1Props> = ({ setLayout: setLayout }) => {
     <>
       <div className="flex min-h-full">
         <Sidebar />
-        <div className="flex min-w-full items-stretch flex-col justify-center">
+        <div className="flex flex-1 items-stretch flex-col justify-center">
           <Topbar />
-          <div className="flex-1 w-full bg-slate-800 flex justify-center items-center">
-            <Button variant={"outline"} onClick={onClick}>
+          <Editor className="flex-1 w-full bg-slate-800 flex justify-center items-center">
+            <MButton
+              layout
+              layoutId="btn-change-layout"
+              variant={"outline"}
+              onClick={onClick}
+            >
               Change layout
-            </Button>
-          </div>
+            </MButton>
+          </Editor>
         </div>
       </div>
     </>
