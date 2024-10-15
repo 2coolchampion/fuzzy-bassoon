@@ -1,15 +1,18 @@
 "use client";
-import ResponsiveChecker from "@/components/ui/ResponsiveChecker";
 
+import ResponsiveChecker from "@/components/ui/ResponsiveChecker";
 import Sidebar from "@/components/ui/sidebar";
+import { motion as m, useAnimation, Variants } from "framer-motion";
 import React from "react";
 
-const page = () => {
+const DevPage: React.FC = () => {
   return (
-    <ResponsiveChecker>
-      <Sidebar />
-    </ResponsiveChecker>
+    <>
+      <ResponsiveChecker>
+        <Sidebar />
+      </ResponsiveChecker>
+    </>
   );
 };
 
-export default page;
+export default DevPage;
