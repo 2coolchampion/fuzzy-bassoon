@@ -14,7 +14,6 @@ import {
   useMotionValue,
 } from "framer-motion";
 import { X } from "lucide-react";
-// import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 interface DialogContextType {
   isOpen: boolean;
@@ -82,8 +81,6 @@ const WindowContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   WindowContentProps
 >(({ className, ...props }, ref) => {
-  // const { getItem, setItem } = useLocalStorage();
-
   type WindowSize = {
     width: number;
     height: number;
@@ -172,7 +169,6 @@ const WindowContent = React.forwardRef<
       document.removeEventListener("pointermove", onPointerMove);
       document.removeEventListener("pointerup", onPointerUp);
 
-      // Update state and localStorage when resizing is done
       if (windowRef.current) {
         const newSize = {
           width: windowRef.current.offsetWidth,
@@ -180,8 +176,6 @@ const WindowContent = React.forwardRef<
           left: windowRef.current.offsetLeft,
           top: windowRef.current.offsetTop,
         };
-        setWindowSize(newSize);
-        // setItem("windowSize", JSON.stringify(newSize));
       }
     };
 
