@@ -26,7 +26,7 @@ const DevResponsiveSettings = () => {
       <WindowTrigger className="fixed opacity-0 duration-150  hover:opacity-100 bottom-5 left-5">
         Open controls
       </WindowTrigger>
-      <WindowContent className="h-60 w-full max-w-xl">
+      <WindowContent>
         <h2>Draggable Window</h2>
         <p>You can drag this window around using the handle at the top.</p>
       </WindowContent>
