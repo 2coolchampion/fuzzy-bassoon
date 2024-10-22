@@ -92,10 +92,10 @@ const WindowContent = React.forwardRef<
   };
 
   const [windowSize, setWindowSize] = useState<WindowSize>({
-    width: 250,
-    height: 250,
-    left: 0,
-    top: 0,
+    width: 300,
+    height: 940,
+    left: 10,
+    top: 10,
   });
 
   const windowRef = useRef<HTMLDivElement>(null);
@@ -117,7 +117,6 @@ const WindowContent = React.forwardRef<
     const initialHeight = windowRef.current?.offsetHeight || 0;
     const initialLeft = windowRef.current?.offsetLeft || 0;
     const initialTop = windowRef.current?.offsetTop || 0;
-    console.log("onpointedown");
 
     const onPointerMove = (moveEvent: PointerEvent) => {
       let newWidth = initialWidth;
@@ -128,9 +127,7 @@ const WindowContent = React.forwardRef<
       let deltaX = moveEvent.clientX - initialX;
       let deltaY = moveEvent.clientY - initialY;
 
-      console.log("resizing");
       if (direction.includes("e")) {
-        console.log("resizing");
         newWidth = initialWidth + deltaX;
       } else if (direction.includes("w")) {
         newWidth = initialWidth - deltaX;
@@ -212,7 +209,6 @@ const WindowContent = React.forwardRef<
 
     Object.entries(directionsHandlePair).forEach(([direction, handle]) => {
       if (handle) {
-        console.log("attachnig to: ", handle);
         handle.addEventListener(
           "pointerdown",
           onPointerDown(direction as Direction)
@@ -277,19 +273,6 @@ const WindowContent = React.forwardRef<
 
   const controls = useDragControls();
 
-  // const onDragEnd = (
-  //   event: MouseEvent | TouchEvent | PointerEvent,
-  //   info: any
-  // ) => {
-  //   const newSize = {
-  //     ...windowSize,
-  //     left: info.point.x,
-  //     top: info.point.y,
-  //   };
-  //   setWindowSize(newSize);
-  //   setItem("windowSize", JSON.stringify(newSize));
-  // };
-
   return (
     <DialogPrimitive.Content
       onPointerDownOutside={(e) => {
@@ -322,7 +305,6 @@ const WindowContent = React.forwardRef<
         dragMomentum={false}
         dragControls={controls}
         dragListener={false}
-        // onDragEnd={onDragEnd}
       >
         {Object.entries(handles).map(([key, handle]) => (
           <div key={key} ref={handle.ref} className={handle.className} />
