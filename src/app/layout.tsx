@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localfont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import db from "@/db/db";
+import { db } from "@/db/index";
 import { DM_Sans } from "next/font/google";
 import { cn } from "../lib/utils";
 

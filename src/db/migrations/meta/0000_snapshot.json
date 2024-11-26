@@ -1,6 +1,6 @@
 {
-  "id": "dfb4873c-67a2-4c8b-b17d-6d7214521aea",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -67,12 +67,13 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "files_workspace_id_workspaces_id_fk": {
-          "name": "files_workspace_id_workspaces_id_fk",
+        "files_folder_id_folders_id_fk": {
+          "name": "files_folder_id_folders_id_fk",
           "tableFrom": "files",
-          "tableTo": "workspaces",
+          "tableTo": "folders",
+          "schemaTo": "public",
           "columnsFrom": [
-            "workspace_id"
+            "folder_id"
           ],
           "columnsTo": [
             "id"
@@ -80,12 +81,13 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "files_folder_id_folders_id_fk": {
-          "name": "files_folder_id_folders_id_fk",
+        "files_workspace_id_workspaces_id_fk": {
+          "name": "files_workspace_id_workspaces_id_fk",
           "tableFrom": "files",
-          "tableTo": "folders",
+          "tableTo": "workspaces",
+          "schemaTo": "public",
           "columnsFrom": [
-            "folder_id"
+            "workspace_id"
           ],
           "columnsTo": [
             "id"
@@ -95,7 +97,10 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
     },
     "public.folders": {
       "name": "folders",
@@ -158,6 +163,7 @@
           "name": "folders_workspace_id_workspaces_id_fk",
           "tableFrom": "folders",
           "tableTo": "workspaces",
+          "schemaTo": "public",
           "columnsFrom": [
             "workspace_id"
           ],
@@ -169,7 +175,10 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
     },
     "public.workspaces": {
       "name": "workspaces",
@@ -233,16 +242,113 @@
         }
       },
       "indexes": {},
+      "foreignKeys": {
+        "workspaces_workspace_owner_users_id_fk": {
+          "name": "workspaces_workspace_owner_users_id_fk",
+          "tableFrom": "workspaces",
+          "tableTo": "users",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "workspace_owner"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
+    },
+    "public.users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "full_name": {
+          "name": "full_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "avatar_url": {
+          "name": "avatar_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "active": {
+          "name": "active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "last_signed_in": {
+          "name": "last_signed_in",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "testtag": {
+          "name": "testtag",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {
+        "users_email_unique": {
+          "columns": [
+            "email"
+          ],
+          "nullsNotDistinct": false,
+          "name": "users_email_unique"
+        }
+      },
+      "checkConstraints": {},
+      "policies": {},
+      "isRLSEnabled": false
     }
   },
   "enums": {},
   "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
   "_meta": {
-    "columns": {},
     "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
     "tables": {}
   }
 }
