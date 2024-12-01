@@ -1,5 +1,6 @@
 import { relations } from "drizzle-orm/relations";
-import { users, accounts } from "./user";
+import { users } from "./user";
+import { accounts } from "./account";
 import { workspaces } from "./workspace";
 import { folders } from "./folder";
 import { files } from "./file";
