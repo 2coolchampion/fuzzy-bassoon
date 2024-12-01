@@ -2,8 +2,8 @@ import { InferSelectModel } from "drizzle-orm";
 import { pgTable, uuid, text, integer, primaryKey } from "drizzle-orm/pg-core";
 import type { AdapterAccountType } from "next-auth/adapters";
 import { users } from "./user";
-import { UserAuthSchema } from "./schemas";
-export const accounts = UserAuthSchema.table(
+import { AuthJsSchema } from "./schemas";
+export const accounts = AuthJsSchema.table(
   "account",
   {
     userId: text()
