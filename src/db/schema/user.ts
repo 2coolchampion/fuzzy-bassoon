@@ -12,19 +12,19 @@ import {
 import type { InferSelectModel } from "drizzle-orm";
 
 export const users = pgTable("user", {
-  id: text()
+  id: text("id")
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  name: text(),
+  name: text("name"),
   email: varchar({ length: 256 }).notNull().unique(),
-  emailVerified: timestamp({ mode: "date" }),
-  image: text(),
-  createdAt: timestamp({ withTimezone: true, mode: "string" })
+  emailVerified: timestamp("emailVerified", { mode: "date" }),
+  image: text("image"),
+  createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
     .defaultNow()
     .notNull(),
-  avatarUrl: text(),
+  avatarUrl: text("avatar_url"),
   active: boolean().default(true).notNull(),
-  lastSignedIn: timestamp({
+  lastSignedIn: timestamp("last_signed_in", {
     withTimezone: true,
     mode: "string",
   }),

@@ -12,15 +12,15 @@ export const folders = pgTable(
   "folders",
   {
     id: uuid().defaultRandom().primaryKey().notNull(),
-    createdAt: timestamp({ withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
       .defaultNow()
       .notNull(),
     title: text().notNull(),
-    iconId: text().notNull(),
+    iconId: text("icon_id").notNull(),
     data: text(),
-    inTrash: text(),
-    bannerUrl: text(),
-    workspaceId: uuid().notNull(),
+    inTrash: text("in_trash"),
+    bannerUrl: text("banner_url"),
+    workspaceId: uuid("workspace_id").notNull(),
   },
   (table) => {
     return {

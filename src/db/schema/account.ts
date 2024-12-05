@@ -1,24 +1,25 @@
 import { InferSelectModel } from "drizzle-orm";
-import { pgTable, uuid, text, integer, primaryKey } from "drizzle-orm/pg-core";
+import { text, integer, primaryKey } from "drizzle-orm/pg-core";
 import type { AdapterAccountType } from "next-auth/adapters";
 import { users } from "./user";
 import { AuthJsSchema } from "./schemas";
+
 export const accounts = AuthJsSchema.table(
   "account",
   {
-    userId: text()
+    userId: text("userId")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
-    type: text().$type<AdapterAccountType>().notNull(),
-    provider: text().notNull(),
-    providerAccountId: text().notNull(),
-    refresh_token: text(),
-    access_token: text(),
-    expires_at: integer(),
-    token_type: text(),
-    scope: text(),
-    id_token: text(),
-    session_state: text(),
+    type: text("type").$type<AdapterAccountType>().notNull(),
+    provider: text("provider").notNull(),
+    providerAccountId: text("providerAccountId").notNull(),
+    refresh_token: text("refresh_token"),
+    access_token: text("access_token"),
+    expires_at: integer("expires_at"),
+    token_type: text("token_type"),
+    scope: text("scope"),
+    id_token: text("id_token"),
+    session_state: text("session_state"),
   },
   (account) => ({
     compoundKey: primaryKey({

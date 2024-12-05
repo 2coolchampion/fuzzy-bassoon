@@ -3,9 +3,10 @@ import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Checkbox } from "../ui/checkbox";
 import { EyeIcon } from "lucide-react";
-import { login } from "@/app/(auth)/actions";
+import { useSession, signIn, signOut } from "next-auth/react";
 
-const loginForm = () => {
+const LoginForm = () => {
+  const { data: session, status } = useSession();
   const {
     watch,
     register,
@@ -17,7 +18,36 @@ const loginForm = () => {
     console.log(data);
   };
 
-  console.log(watch("username"));
+  // If user is logged in, show their info and sign out button
+  if (status === "authenticated" && session?.user) {
+    return (
+      <div className="mx-auto flex-col max-w-sm flex space-y-6">
+        <h2 className="text-2xl">Welcome back!</h2>
+        <div className="flex flex-col items-center space-y-4 p-6 border border-slate-200 rounded-lg">
+          {session.user.image && (
+            <img
+              src={session.user.image}
+              alt="Profile"
+              className="w-20 h-20 rounded-full"
+            />
+          )}
+          <div className="text-center">
+            <p className="font-medium text-lg">{session.user.name}</p>
+            <p className="text-slate-500">{session.user.email}</p>
+          </div>
+          <Button
+            onClick={() => signOut()}
+            variant="outline"
+            className="w-full mt-4"
+          >
+            Sign Out
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // If user is not logged in, show login form
   return (
     <>
       <div className="mx-auto flex-col max-w-sm flex space-y-6">
@@ -78,13 +108,13 @@ const loginForm = () => {
           <hr className="flex-grow border-t border-slate-500" />
         </div>
         <div className="flex flex-col w-full items-center">
-          <form action={login} className="w-full max-w-xs">
-            <Button className="w-full">Signin with Google</Button>
-          </form>
+          <Button className="w-full max-w-xs" onClick={() => signIn("google")}>
+            Sign in with Google
+          </Button>
         </div>
       </div>
     </>
   );
 };
 
-export default loginForm;
+export default LoginForm;

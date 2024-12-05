@@ -5,6 +5,7 @@ import { ThemeProvider } from "next-themes";
 import { db } from "@/db/index";
 import { DM_Sans } from "next/font/google";
 import { cn } from "../lib/utils";
+import { SessionProvider } from "next-auth/react";
 
 const dm_sans = DM_Sans({ subsets: ["latin"] });
 const international = localfont({
@@ -34,9 +35,11 @@ export default function RootLayout({
           international.className
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          {children}
-        </ThemeProvider>
+        <SessionProvider>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            {children}
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );

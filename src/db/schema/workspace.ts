@@ -13,16 +13,16 @@ export const workspaces = pgTable(
   "workspaces",
   {
     id: uuid().defaultRandom().primaryKey().notNull(),
-    createdAt: timestamp({ withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
       .defaultNow()
       .notNull(),
-    workspaceOwner: uuid().notNull(),
+    workspaceOwner: text("workspace_owner").notNull(),
     title: text().notNull(),
-    iconId: text().notNull(),
+    iconId: text("icon_id").notNull(),
     data: text(),
-    inTrash: text(),
+    inTrash: text("in_trash"),
     logo: text(),
-    bannerUrl: text(),
+    bannerUrl: text("banner_url"),
   },
   (table) => {
     return {
