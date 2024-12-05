@@ -6,10 +6,10 @@ import {
   DropdownMenuItem,
 } from "@radix-ui/react-dropdown-menu";
 import { Image, Search } from "lucide-react";
-import { Button } from "./button";
+import { Button } from "../button";
 import RecentFilesSection from "./RecentFilesSection";
 import FolderTree from "./FolderTree";
-import { Input } from "./input";
+import { Input } from "../input";
 import { motion as m, HTMLMotionProps } from "framer-motion";
 
 interface SidebarProps extends HTMLMotionProps<"aside"> {

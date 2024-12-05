@@ -1,8 +1,8 @@
-import { Label } from "./label";
+import { Label } from "../label";
 import { Clock, ChevronDown, FolderTreeIcon, Folder } from "lucide-react";
 import { FolderDummyData } from "@/lib/dummyData";
-import { Button } from "./button";
-import FolderTreeItem from "./FolderTreeItem";
+import { Button } from "../button";
+import FolderTreeItem from "../FolderTreeItem";
 const FolderTree = () => {
   return (
     <div className="mt-5">

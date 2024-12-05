@@ -1,23 +1,13 @@
-"use client";
+import Editor from "@/components/ui/deprecated/Editor";
+import React from "react";
 
-import Layout2 from "@/components/ui/layout2";
-import Layout1 from "@/components/ui/layout1";
-import Conditional from "@/components/ui/conditional";
-import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
-
-export const Main = () => {
-  return <div className="w-full h-full">Main</div>;
-};
-
-const editor = () => {
-  const [layout, setLayout] = useState<"layout1" | "layout2">("layout1");
-
+const page = () => {
   return (
-    <>
-      <Conditional when={layout} setAction={setLayout} />
-    </>
+    <Editor>
+      <h1>Editor heading</h1>
+      <p>Editor paragraph</p>
+    </Editor>
   );
 };
 
-export default editor;
+export default page;
