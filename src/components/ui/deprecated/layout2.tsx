@@ -1,5 +1,5 @@
 import Topbar from "./topbar";
-import Sidebar from "./sidebar";
+import CustomSidebar from "./sidebar";
 import { useState } from "react";
 import { Button, MButton } from "../button";
 import { Layout } from "@/lib/types";
@@ -24,7 +24,7 @@ const Layout2: React.FC<Layout2Props> = ({ setLayout }) => {
         <Topbar />
         <div className="flex flex-1 justify-center">
           <div className="flex flex-1 justify-end">
-            <Sidebar className="h-full" />
+            <CustomSidebar className="h-full" />
           </div>
           <Editor className="w-[40rem] bg-slate-800 flex justify-center items-center">
             <MButton

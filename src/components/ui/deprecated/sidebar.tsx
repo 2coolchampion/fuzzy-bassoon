@@ -16,7 +16,7 @@ interface SidebarProps extends HTMLMotionProps<"aside"> {
   className?: string;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ className, ...props }) => {
+const CustomSidebar: React.FC<SidebarProps> = ({ className, ...props }) => {
   return (
     <m.aside
       layout
@@ -61,4 +61,4 @@ const Sidebar: React.FC<SidebarProps> = ({ className, ...props }) => {
     </m.aside>
   );
 };
-export default Sidebar;
+export default CustomSidebar;

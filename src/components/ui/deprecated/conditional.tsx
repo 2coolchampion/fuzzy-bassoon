@@ -1,6 +1,6 @@
 import React from "react";
-import Layout1 from "./deprecated/layout1";
-import Layout2 from "./deprecated/layout2";
+import Layout1 from "./layout1";
+import Layout2 from "./layout2";
 import { Layout } from "@/lib/types";
 
 interface ConditionalProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -1,5 +1,5 @@
 import Topbar from "./topbar";
-import Sidebar from "./sidebar";
+import CustomSidebar from "./sidebar";
 import { Button, MButton } from "../button";
 import { Layout } from "@/lib/types";
 import { motion as m } from "framer-motion";
@@ -20,7 +20,7 @@ const layout1: React.FC<Layout1Props> = ({ setLayout: setLayout }) => {
   return (
     <>
       <div className="flex min-h-full">
-        <Sidebar />
+        <CustomSidebar />
         <div className="flex flex-1 items-stretch flex-col justify-center">
           <Topbar />
           <Editor className="flex-1 w-full bg-slate-800 flex justify-center items-center">
