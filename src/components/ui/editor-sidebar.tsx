@@ -7,8 +7,11 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import {
   Calendar,
@@ -20,6 +23,21 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { Button } from "./button";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "./collapsible";
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "./command";
+import { SearchButton } from "./search-button";
 
 // Menu items.
 const items = [
@@ -39,11 +57,6 @@ const items = [
     icon: Calendar,
   },
   {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
     title: "Settings",
     url: "#",
     icon: Settings,
@@ -53,17 +66,22 @@ const items = [
 export default function EditorSidebar() {
   return (
     <Sidebar>
-      <SidebarHeader className="flex justify-between hover:bg-slate-800">
+      <SidebarHeader>
         <Popover>
-          <PopoverTrigger>
-            <div className="flex items-center justify-between gap-2">
-              <div className="flex gap-4">
-                <Image className="self-center flex-none" />
-                <p className="line-clamp-2">
-                  Workspace again and again, too long to display bro
-                </p>
-              </div>
-              <ChevronDown className="flex-none" />
+          <PopoverTrigger asChild>
+            <div className="w-full">
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton>
+                    <Image className="self-center flex-none h-8" />
+                    <span className="line-clamp-1">Workspace</span>
+                    <span className="sr-only">Workspace</span>
+                  </SidebarMenuButton>
+                  <SidebarMenuAction>
+                    <ChevronDown className="flex-none" />
+                  </SidebarMenuAction>
+                </SidebarMenuItem>
+              </SidebarMenu>
             </div>
           </PopoverTrigger>
           <PopoverContent>
@@ -71,20 +89,32 @@ export default function EditorSidebar() {
           </PopoverContent>
         </Popover>
       </SidebarHeader>
+      <SearchButton />
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Recently opened</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+                <Collapsible>
+                  <SidebarMenuItem key={item.title}>
+                    <CollapsibleTrigger>
+                      <SidebarMenuButton asChild>
+                        <a href={item.url}>
+                          <item.icon />
+                          <span>{item.title}</span>
+                        </a>
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <SidebarMenuSub>
+                        <SidebarMenuSubItem>
+                          <a href="#">Sub menu item</a>
+                        </SidebarMenuSubItem>
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </SidebarMenuItem>
+                </Collapsible>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
