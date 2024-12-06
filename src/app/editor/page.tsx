@@ -1,15 +1,18 @@
 import Editor from "@/components/ui/deprecated/Editor";
-import { Sidebar } from "@/components/ui/sidebar";
+import EditorSidebar from "@/components/ui/editor-sidebar";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import React from "react";
 
 const page = () => {
   return (
     <>
-      <Sidebar />
-      <div className="w-full h-full flex justify-center items-center">
-        {" "}
-        <h1>Editor</h1>
-      </div>
+      <EditorSidebar />
+      <main className="relative w-full">
+        <div className="flex-1 flex justify-center items-center h-full w-full">
+          <SidebarTrigger className="absolute top-4 left-4" />
+          <h1>Just start writing...</h1>
+        </div>
+      </main>
     </>
   );
 };

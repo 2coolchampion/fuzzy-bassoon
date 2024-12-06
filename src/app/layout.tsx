@@ -6,6 +6,7 @@ import { db } from "@/db/index";
 import { DM_Sans } from "next/font/google";
 import { cn } from "../lib/utils";
 import { SessionProvider } from "next-auth/react";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 const dm_sans = DM_Sans({ subsets: ["latin"] });
 const international = localfont({
@@ -35,11 +36,13 @@ export default function RootLayout({
           international.className
         )}
       >
-        <SessionProvider>
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-            {children}
-          </ThemeProvider>
-        </SessionProvider>
+        <SidebarProvider>
+          <SessionProvider>
+            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+              {children}
+            </ThemeProvider>
+          </SessionProvider>
+        </SidebarProvider>
       </body>
     </html>
   );
